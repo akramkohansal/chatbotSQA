@@ -3,13 +3,17 @@ package com.domain.json;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
 import org.junit.Test;
 
 public class JSONDataTest {
 
   JsonCreatorFactory creatorFactory = new JsonCreatorFactory();
 
+  
+  String jsonHelloTxt = "{\"id\":\"b19b7bb5-f5f6-4ea0-92d9-4df2ef377a08\",\"timestamp\":\"2017-12-30T17:33:17.49Z\",\"lang\":\"en\",\"result\":{\"source\":\"agent\",\"resolvedQuery\":\"Hey there\","
+      + "\"action\":\"\",\"actionIncomplete\":false,\"parameters\":{},\"contexts\":[],\"metadata\":{\"intentId\":\"bbcae676-2fa0-4ecf-a39c-7df0ad9745e6\",\"webhookUsed\":\"false\","
+      + "\"webhookForSlotFillingUsed\":\"false\",\"intentName\":\"Hey there\"},\"fulfillment\":{\"speech\":\"It will cost djffdjg\",\"messages\":[{\"type\":0,\"speech\":\"It will cost djffdjg\"}]},\"score\":1},"
+      + "\"status\":{\"code\":200,\"errorType\":\"success\",\"webhookTimedOut\":false},\"sessionId\":\"1252c0c5-68b1-4a71-af00-05c809f6f1a5\"}\n";
   
   String jsonPriceTxt = "{\"id\":\"b19b7bb5-f5f6-4ea0-92d9-4df2ef377a08\",\"timestamp\":\"2017-12-30T17:33:17.49Z\",\"lang\":\"en\",\"result\":{\"source\":\"agent\",\"resolvedQuery\":\"How much is X\","
       + "\"action\":\"\",\"actionIncomplete\":false,\"parameters\":{},\"contexts\":[],\"metadata\":{\"intentId\":\"bbcae676-2fa0-4ecf-a39c-7df0ad9745e6\",\"webhookUsed\":\"false\","
@@ -41,6 +45,18 @@ public class JSONDataTest {
       + "\"webhookForSlotFillingUsed\":\"false\",\"intentName\":\"no responsing\"},\"fulfillment\":{\"speech\":\"It will cost djffdjg\",\"messages\":[{\"type\":0,\"speech\":\"It will cost djffdjg\"}]},\"score\":1},"
       + "\"status\":{\"code\":200,\"errorType\":\"success\",\"webhookTimedOut\":false},\"sessionId\":\"1252c0c5-68b1-4a71-af00-05c809f6f1a5\"}\n";
 
+  
+  @Test(expected = JSONException.class)
+  public void testCreateHelloResponse() throws JSONException {
+    
+    String content = creatorFactory.createResponse(jsonHelloTxt);
+    assertNotNull(content);
+    org.codehaus.jettison.json.JSONObject object =
+        new org.codehaus.jettison.json.JSONObject(content);
+    assertEquals(object.get("speech"), "Hola");
+      
+  }
+  
 	@Test(expected = JSONException.class)
     public void testCreatePriceResponse() throws JSONException {
         
@@ -48,14 +64,7 @@ public class JSONDataTest {
       assertNotNull(content);
       org.codehaus.jettison.json.JSONObject object =
           new org.codehaus.jettison.json.JSONObject(content);
-      
-//      org.codehaus.jettison.json.JSONObject result =
-//          (org.codehaus.jettison.json.JSONObject) object.get("result");
-//      JSONObject fulfillment = (org.codehaus.jettison.json.JSONObject) result.get("fulfillment");
-//      JSONObject result = new JSONObject();
-//      result.put("speech", "It will cost 200€");
-//      result.put("displayText", "It will cost 200€");
-      assertEquals(object.get("speech"), "It will cost 200€");
+      assertEquals(object.get("speech"), "The item will cost 200€");
         
     }
 	
@@ -66,10 +75,7 @@ public class JSONDataTest {
       assertNotNull(content);
       org.codehaus.jettison.json.JSONObject object =
           new org.codehaus.jettison.json.JSONObject(content);
-//      org.codehaus.jettison.json.JSONObject result =
-//          (org.codehaus.jettison.json.JSONObject) object.get("result");
-//      JSONObject fulfillment = (org.codehaus.jettison.json.JSONObject) result.get("fulfillment");
-      assertEquals(object.get("speech"), "Si, Tenemose");
+      assertEquals(object.get("speech"), "We are sorry but that product is not currently available");
     }
 	
 	@Test(expected = JSONException.class)
@@ -79,10 +85,7 @@ public class JSONDataTest {
       assertNotNull(content);
       org.codehaus.jettison.json.JSONObject object =
           new org.codehaus.jettison.json.JSONObject(content);
-//      org.codehaus.jettison.json.JSONObject result =
-//          (org.codehaus.jettison.json.JSONObject) object.get("result");
-//      JSONObject fulfillment = (org.codehaus.jettison.json.JSONObject) result.get("fulfillment");
-      assertEquals(object.get("speech"), "It would be at your address tomorrow morning");
+      assertEquals(object.get("speech"), "The item will arrive to your shipping address tomorrow morning");
     }
 	
 	@Test(expected = JSONException.class)
@@ -92,10 +95,7 @@ public class JSONDataTest {
       assertNotNull(content);
       org.codehaus.jettison.json.JSONObject object =
           new org.codehaus.jettison.json.JSONObject(content);
-//      org.codehaus.jettison.json.JSONObject result =
-//          (org.codehaus.jettison.json.JSONObject) object.get("result");
-//      JSONObject fulfillment = (org.codehaus.jettison.json.JSONObject) result.get("fulfillment");
-      assertEquals(object.get("speech"), "It has been sent to postOffice");
+      assertEquals(object.get("speech"), "The item has been shipped via the Post Office");
     }
 	
 	@Test(expected = JSONException.class)
@@ -105,10 +105,7 @@ public class JSONDataTest {
       assertNotNull(content);
       org.codehaus.jettison.json.JSONObject object =
           new org.codehaus.jettison.json.JSONObject(content);
-//      org.codehaus.jettison.json.JSONObject result =
-//          (org.codehaus.jettison.json.JSONObject) object.get("result");
-//      JSONObject fulfillment = (org.codehaus.jettison.json.JSONObject) result.get("fulfillment");
-      assertEquals(object.getString("speech"), "Sorry not Available");
+      assertEquals(object.getString("speech"), "We are sorry but that product is not currently available");
         
     }
 	
@@ -119,10 +116,7 @@ public class JSONDataTest {
       assertNotNull(content);
       org.codehaus.jettison.json.JSONObject object =
           new org.codehaus.jettison.json.JSONObject(content);
-//      org.codehaus.jettison.json.JSONObject result =
-//          (org.codehaus.jettison.json.JSONObject) object.get("result");
-//      JSONObject fulfillment = (org.codehaus.jettison.json.JSONObject) result.get("fulfillment");
-      assertEquals(object.getString("speech"), "Sorry not Available");
+      assertEquals(object.getString("speech"), "We are sorry but that product is not currently available");
         
     }
 }
