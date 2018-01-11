@@ -8,7 +8,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import com.domain.json.JsonCreatorFactory;
 
 @Path("apiserver")
@@ -50,10 +52,19 @@ public class ApiResource {
   @Consumes(MediaType.APPLICATION_JSON)
   public Response postIt(String content) throws JSONException {
 
+    
       JsonCreatorFactory creator = new JsonCreatorFactory();
       String response = creator.createResponse(content);
     
-    return Response.status(200).entity(response).build();
+      JSONObject obj = new JSONObject();
+      obj.put("fulfillmentText", "string");
+      JSONArray jsonArray = new JSONArray();
+      JSONObject obj2 = new JSONObject();
+      obj2.put("test", "pricevalue");
+      jsonArray.put(obj2);
+      obj.put("fulfillmentMessages", jsonArray);
+      String data = obj.toString();
+    return Response.status(200).entity(data).build();
   }
 
   

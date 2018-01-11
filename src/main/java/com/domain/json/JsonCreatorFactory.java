@@ -48,6 +48,7 @@ public class JsonCreatorFactory {
 
 
   private void createPriceResponse(JSONObject result) throws JSONException {
+    
     JSONObject fulfillment = (org.codehaus.jettison.json.JSONObject) result.get("fulfillment");
     fulfillment.put("speech", "It will cost 200€");
     org.codehaus.jettison.json.JSONArray msgArray = fulfillment.getJSONArray("messages");

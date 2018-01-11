@@ -529,19 +529,19 @@
 
 
 
-        "jacket":
+        "jacket":{
 
 
-        "cardigan":
+        "cardigan":null
 
+,
+        "shirt":null
 
-        "shirt":
+,
+        "skirt":null
+},
 
-
-        "skirt":
-
-
-        "travel bags":{
+       "travel bags":{
             "ankle":{
                 "response":null
             },
@@ -794,7 +794,7 @@
         },
 
         "flat":
-
+{
 
         "shorts":{
             "ankle":{
@@ -880,11 +880,9 @@
 
 
         "coat/cape":
+{
 
-
-        "tops":
-
-
+        "tops":{
         "pump/wedge":{
             "ankle":{
                 "response":{
@@ -974,7 +972,7 @@
 
 
         "sweatshirt/hoodie":
-
+{
 
         "sandals":{
             "ankle":{
@@ -1109,7 +1107,7 @@
 
         "blazer":
 
-
+{
         "top handles":{
             "ankle":{
                 "response":null
@@ -1284,7 +1282,7 @@
 
         "sweater":
 
-
+{
         "backpack":{
             "ankle":{
                 "response":null
@@ -1454,4 +1452,6 @@
             }
         }
     }
+    }
+    
 }
