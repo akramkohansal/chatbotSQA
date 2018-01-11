@@ -56,12 +56,7 @@ public class ApiResource {
       JsonCreatorFactory creator = new JsonCreatorFactory();
       String response = creator.createResponse(content);
     
-      JSONObject obj = new JSONObject();
-      obj.put("speech", "price 200€");
-      obj.put("displayText", "price 200€");
-      
-      String data = obj.toString();
-    return Response.status(200).entity(data).build();
+    return Response.status(200).entity(response).build();
   }
 
   

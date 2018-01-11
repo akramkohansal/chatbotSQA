@@ -45,14 +45,17 @@ public class JSONDataTest {
     public void testCreatePriceResponse() throws JSONException {
         
       String content = creatorFactory.createResponse(jsonPriceTxt);
-      System.out.println(content);
       assertNotNull(content);
       org.codehaus.jettison.json.JSONObject object =
           new org.codehaus.jettison.json.JSONObject(content);
-      org.codehaus.jettison.json.JSONObject result =
-          (org.codehaus.jettison.json.JSONObject) object.get("result");
-      JSONObject fulfillment = (org.codehaus.jettison.json.JSONObject) result.get("fulfillment");
-      assertEquals(fulfillment.get("speech"), "It will cost 200€");
+      
+//      org.codehaus.jettison.json.JSONObject result =
+//          (org.codehaus.jettison.json.JSONObject) object.get("result");
+//      JSONObject fulfillment = (org.codehaus.jettison.json.JSONObject) result.get("fulfillment");
+//      JSONObject result = new JSONObject();
+//      result.put("speech", "It will cost 200€");
+//      result.put("displayText", "It will cost 200€");
+      assertEquals(object.get("speech"), "It will cost 200€");
         
     }
 	
@@ -63,10 +66,10 @@ public class JSONDataTest {
       assertNotNull(content);
       org.codehaus.jettison.json.JSONObject object =
           new org.codehaus.jettison.json.JSONObject(content);
-      org.codehaus.jettison.json.JSONObject result =
-          (org.codehaus.jettison.json.JSONObject) object.get("result");
-      JSONObject fulfillment = (org.codehaus.jettison.json.JSONObject) result.get("fulfillment");
-      assertEquals(fulfillment.get("speech"), "Si, Tenemose");
+//      org.codehaus.jettison.json.JSONObject result =
+//          (org.codehaus.jettison.json.JSONObject) object.get("result");
+//      JSONObject fulfillment = (org.codehaus.jettison.json.JSONObject) result.get("fulfillment");
+      assertEquals(object.get("speech"), "Si, Tenemose");
     }
 	
 	@Test(expected = JSONException.class)
@@ -76,10 +79,10 @@ public class JSONDataTest {
       assertNotNull(content);
       org.codehaus.jettison.json.JSONObject object =
           new org.codehaus.jettison.json.JSONObject(content);
-      org.codehaus.jettison.json.JSONObject result =
-          (org.codehaus.jettison.json.JSONObject) object.get("result");
-      JSONObject fulfillment = (org.codehaus.jettison.json.JSONObject) result.get("fulfillment");
-      assertEquals(fulfillment.get("speech"), "It would be at your address tomorrow morning");
+//      org.codehaus.jettison.json.JSONObject result =
+//          (org.codehaus.jettison.json.JSONObject) object.get("result");
+//      JSONObject fulfillment = (org.codehaus.jettison.json.JSONObject) result.get("fulfillment");
+      assertEquals(object.get("speech"), "It would be at your address tomorrow morning");
     }
 	
 	@Test(expected = JSONException.class)
@@ -89,10 +92,10 @@ public class JSONDataTest {
       assertNotNull(content);
       org.codehaus.jettison.json.JSONObject object =
           new org.codehaus.jettison.json.JSONObject(content);
-      org.codehaus.jettison.json.JSONObject result =
-          (org.codehaus.jettison.json.JSONObject) object.get("result");
-      JSONObject fulfillment = (org.codehaus.jettison.json.JSONObject) result.get("fulfillment");
-      assertEquals(fulfillment.get("speech"), "It has been sent to postOffice");
+//      org.codehaus.jettison.json.JSONObject result =
+//          (org.codehaus.jettison.json.JSONObject) object.get("result");
+//      JSONObject fulfillment = (org.codehaus.jettison.json.JSONObject) result.get("fulfillment");
+      assertEquals(object.get("speech"), "It has been sent to postOffice");
     }
 	
 	@Test(expected = JSONException.class)
@@ -102,10 +105,10 @@ public class JSONDataTest {
       assertNotNull(content);
       org.codehaus.jettison.json.JSONObject object =
           new org.codehaus.jettison.json.JSONObject(content);
-      org.codehaus.jettison.json.JSONObject result =
-          (org.codehaus.jettison.json.JSONObject) object.get("result");
-      JSONObject fulfillment = (org.codehaus.jettison.json.JSONObject) result.get("fulfillment");
-      assertEquals(fulfillment.getString("speech"), "Sorry not Available");
+//      org.codehaus.jettison.json.JSONObject result =
+//          (org.codehaus.jettison.json.JSONObject) object.get("result");
+//      JSONObject fulfillment = (org.codehaus.jettison.json.JSONObject) result.get("fulfillment");
+      assertEquals(object.getString("speech"), "Sorry not Available");
         
     }
 	
@@ -116,10 +119,10 @@ public class JSONDataTest {
       assertNotNull(content);
       org.codehaus.jettison.json.JSONObject object =
           new org.codehaus.jettison.json.JSONObject(content);
-      org.codehaus.jettison.json.JSONObject result =
-          (org.codehaus.jettison.json.JSONObject) object.get("result");
-      JSONObject fulfillment = (org.codehaus.jettison.json.JSONObject) result.get("fulfillment");
-      assertEquals(fulfillment.getString("speech"), "Sorry not Available");
+//      org.codehaus.jettison.json.JSONObject result =
+//          (org.codehaus.jettison.json.JSONObject) object.get("result");
+//      JSONObject fulfillment = (org.codehaus.jettison.json.JSONObject) result.get("fulfillment");
+      assertEquals(object.getString("speech"), "Sorry not Available");
         
     }
 }

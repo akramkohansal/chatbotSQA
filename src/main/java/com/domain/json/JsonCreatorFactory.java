@@ -25,76 +25,96 @@ public class JsonCreatorFactory {
     if (query.contains("X")) {
       switch (intentName) {
         case JsonCreatorFactory.PRICE_INTENT:
-          createPriceResponse(result);
-          break ;
+          return createPriceResponse();
         case JsonCreatorFactory.AVAILABILITY_INTENT:
-          createAvailabilityResponse(result);
-          break ;
+          return createAvailabilityResponse();
         case JsonCreatorFactory.DELIVERY_STATUS_INTENT:
-          createTraceResponse(result);
-          break ;
+          return createTraceResponse();
         case JsonCreatorFactory.DELIVERY_TIME_INTENT:
-          createDeliveryTimeResponse(result);
-          break ;
+          return createDeliveryTimeResponse();
         default:
-            createNotExistResponse(result);
-            break ;
+            return createNotExistResponse();
       }
     }else {
-      createNotExistResponse(result);
+      return createNotExistResponse();
     }
-    return object.toString();
   }
 
 
-  private void createPriceResponse(JSONObject result) throws JSONException {
+  private String createPriceResponse() throws JSONException {
     
-    JSONObject fulfillment = (org.codehaus.jettison.json.JSONObject) result.get("fulfillment");
-    fulfillment.put("speech", "It will cost 200€");
-    org.codehaus.jettison.json.JSONArray msgArray = fulfillment.getJSONArray("messages");
-    org.codehaus.jettison.json.JSONObject msg =
-        (org.codehaus.jettison.json.JSONObject) msgArray.get(0);
-    msg.put("speech", "It will cost 200€");
+    JSONObject result = new JSONObject();
+    result.put("speech", "It will cost 200€");
+    result.put("displayText", "It will cost 200€");
+    return result.toString();
+//    JSONObject fulfillment = (org.codehaus.jettison.json.JSONObject) result.get("fulfillment");
+//    fulfillment.put("speech", "It will cost 200€");
+//    org.codehaus.jettison.json.JSONArray msgArray = fulfillment.getJSONArray("messages");
+//    org.codehaus.jettison.json.JSONObject msg =
+//        (org.codehaus.jettison.json.JSONObject) msgArray.get(0);
+//    msg.put("speech", "It will cost 200€");
   }
 
-  private void createTraceResponse(JSONObject result) throws JSONException {
-    org.codehaus.jettison.json.JSONObject fulfillment =
-        (org.codehaus.jettison.json.JSONObject) result.get("fulfillment");
-    fulfillment.put("speech", "It has been sent to postOffice");
-    org.codehaus.jettison.json.JSONArray msgArray = fulfillment.getJSONArray("messages");
-    org.codehaus.jettison.json.JSONObject msg =
-        (org.codehaus.jettison.json.JSONObject) msgArray.get(0);
-    msg.put("speech", "It has been sent to postOffice");
+  private String createTraceResponse() throws JSONException {
+    
+    JSONObject result = new JSONObject();
+    result.put("speech", "It has been sent to postOffice");
+    result.put("displayText", "It has been sent to postOffice€");
+    return result.toString();
+    
+//    org.codehaus.jettison.json.JSONObject fulfillment =
+//        (org.codehaus.jettison.json.JSONObject) result.get("fulfillment");
+//    fulfillment.put("speech", "It has been sent to postOffice");
+//    org.codehaus.jettison.json.JSONArray msgArray = fulfillment.getJSONArray("messages");
+//    org.codehaus.jettison.json.JSONObject msg =
+//        (org.codehaus.jettison.json.JSONObject) msgArray.get(0);
+//    msg.put("speech", "It has been sent to postOffice");
   }
 
-  private void createDeliveryTimeResponse(JSONObject result) throws JSONException {
-    org.codehaus.jettison.json.JSONObject fulfillment =
-        (org.codehaus.jettison.json.JSONObject) result.get("fulfillment");
-    fulfillment.put("speech", "It would be at your address tomorrow morning");
-    org.codehaus.jettison.json.JSONArray msgArray = fulfillment.getJSONArray("messages");
-    org.codehaus.jettison.json.JSONObject msg =
-        (org.codehaus.jettison.json.JSONObject) msgArray.get(0);
-    msg.put("speech", "It would be at your address tomorrow morning");
+  private String createDeliveryTimeResponse() throws JSONException {
+    JSONObject result = new JSONObject();
+    result.put("speech", "It has been sent to postOffice");
+    result.put("displayText", "It has been sent to postOffice");
+    return result.toString();
+    
+//    org.codehaus.jettison.json.JSONObject fulfillment =
+//        (org.codehaus.jettison.json.JSONObject) result.get("fulfillment");
+//    fulfillment.put("speech", "It would be at your address tomorrow morning");
+//    org.codehaus.jettison.json.JSONArray msgArray = fulfillment.getJSONArray("messages");
+//    org.codehaus.jettison.json.JSONObject msg =
+//        (org.codehaus.jettison.json.JSONObject) msgArray.get(0);
+//    msg.put("speech", "It would be at your address tomorrow morning");
   }
 
-  private void createAvailabilityResponse(JSONObject result) throws JSONException {
-    org.codehaus.jettison.json.JSONObject fulfillment =
-        (org.codehaus.jettison.json.JSONObject) result.get("fulfillment");
-    fulfillment.put("speech", "Si, Tenemose");
-    org.codehaus.jettison.json.JSONArray msgArray = fulfillment.getJSONArray("messages");
-    org.codehaus.jettison.json.JSONObject msg =
-        (org.codehaus.jettison.json.JSONObject) msgArray.get(0);
-    msg.put("speech", "Si, Tenemose");
+  private String createAvailabilityResponse() throws JSONException {
+    JSONObject result = new JSONObject();
+    result.put("speech", "Si, Tenemosee");
+    result.put("displayText", "Si, Tenemose");
+    return result.toString();
+    
+//    org.codehaus.jettison.json.JSONObject fulfillment =
+//        (org.codehaus.jettison.json.JSONObject) result.get("fulfillment");
+//    fulfillment.put("speech", "Si, Tenemose");
+//    org.codehaus.jettison.json.JSONArray msgArray = fulfillment.getJSONArray("messages");
+//    org.codehaus.jettison.json.JSONObject msg =
+//        (org.codehaus.jettison.json.JSONObject) msgArray.get(0);
+//    msg.put("speech", "Si, Tenemose");
   }
 
-  private void createNotExistResponse(JSONObject result) throws JSONException {
-    org.codehaus.jettison.json.JSONObject fulfillment =
-        (org.codehaus.jettison.json.JSONObject) result.get("fulfillment");
-    fulfillment.put("speech", "Sorry not Available");
-    org.codehaus.jettison.json.JSONArray msgArray = fulfillment.getJSONArray("messages");
-    org.codehaus.jettison.json.JSONObject msg =
-        (org.codehaus.jettison.json.JSONObject) msgArray.get(0);
-    msg.put("speech", "Sorry not Available Answer");
+  private String createNotExistResponse() throws JSONException {
+    
+    JSONObject result = new JSONObject();
+    result.put("speech", "Si, Tenemosee");
+    result.put("displayText", "Si, Tenemose");
+    return result.toString();
+    
+//    org.codehaus.jettison.json.JSONObject fulfillment =
+//        (org.codehaus.jettison.json.JSONObject) result.get("fulfillment");
+//    fulfillment.put("speech", "Sorry not Available");
+//    org.codehaus.jettison.json.JSONArray msgArray = fulfillment.getJSONArray("messages");
+//    org.codehaus.jettison.json.JSONObject msg =
+//        (org.codehaus.jettison.json.JSONObject) msgArray.get(0);
+//    msg.put("speech", "Sorry not Available Answer");
   }
 
 }
