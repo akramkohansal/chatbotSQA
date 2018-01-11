@@ -57,12 +57,9 @@ public class ApiResource {
       String response = creator.createResponse(content);
     
       JSONObject obj = new JSONObject();
-      obj.put("fulfillmentText", "string");
-      JSONArray jsonArray = new JSONArray();
-      JSONObject obj2 = new JSONObject();
-      obj2.put("test", "pricevalue");
-      jsonArray.put(obj2);
-      obj.put("fulfillmentMessages", jsonArray);
+      obj.put("speech", "price 200€");
+      obj.put("displayText", "price 200€");
+      
       String data = obj.toString();
     return Response.status(200).entity(data).build();
   }
